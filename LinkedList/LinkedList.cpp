@@ -233,7 +233,7 @@ ItemType Node<ItemType>::getItem() const{
 template<typename ItemType>
 Node<ItemType>* Node<ItemType>::getNext() const{
     return next;
-}
+};
 
 template<typename ItemType>
 LinkedBag<ItemType>::LinkedBag():headPtr(nullptr), itemCount(0){}
