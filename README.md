@@ -18,8 +18,9 @@ I implemented the following data structure (with ADT) and also finished some pra
     - doubly linked list
     - linked list with header and trailer node (to be finished)
     - circular linked list (to be finished)
-- Stack
 - Recursion
+    - Decimal system to binary system
+- Stack
 - Queue (to be finished)
 - Binary trees (to be finished)
 - Graphs (to be finished)
