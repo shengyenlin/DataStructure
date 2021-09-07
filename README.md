@@ -20,8 +20,8 @@ I implemented the following data structure (with ADT) and also finished some pra
     - circular linked list (to be finished)
 - Recursion
     - Decimal system to binary system
-    - N-Queens Puzzle
-    - Sodoku (to be finished)
+    - N-Queens Puzzle (with backtracking techniques)
+    - Sodoku (with backtracking techniques)
 - Stack
 - Queue (to be finished)
 - Binary trees (to be finished)
