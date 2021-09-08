@@ -12,6 +12,7 @@ I implemented the following data structure (with ADT) and also finished some pra
     - vector
     - deque
     - list
+    - queue
 - Linked list
     - unordered linked list
     - ordered linked list
