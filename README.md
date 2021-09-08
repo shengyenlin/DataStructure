@@ -23,6 +23,10 @@ I implemented the following data structure (with ADT) and also finished some pra
     - N-Queens Puzzle (with backtracking techniques)
     - Sodoku (with backtracking techniques)
 - Stack
-- Queue (to be finished)
+    - Array-based stack
+    - Linked-based stack
+- Queue
+    - Array-based queue
+    - Linked-based queue (to be finished)
 - Binary trees (to be finished)
 - Graphs (to be finished)
