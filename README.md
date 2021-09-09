@@ -1,5 +1,5 @@
 # Data Structure
-These practices or exercises are done when I was learning data structures from the following two books/courses on my own .
+These practices or exercises were done when I was learning data structures from the following two books/courses on my own .
 
 - Data Stuctures and Advanced Programming (NTUIM, taught by Ling-Chieh, Kung) 
 - Data Structures Using C++, Second Edition, D.S. Malik
@@ -28,6 +28,7 @@ I implemented the following data structure (with ADT) and also finished some pra
     - Linked-based stack
 - Queue
     - Array-based queue
-    - Linked-based queue (to be finished)
+    - Linked-based queue
+    - Application: simulation (to be finished, it's a little bit complicated...)
 - Binary trees (to be finished)
 - Graphs (to be finished)
