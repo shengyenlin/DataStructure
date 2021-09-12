@@ -33,5 +33,13 @@ I implemented the following data structure (with ADT) and also finished some pra
 - Hashing
     - Open dressing
     - Chaining (to be finished)
+- Sorting Algorithm
+    - Selection Sort: Array-based
+    - Insertion Sort: Array-based, Linked list-based
+    - Shell Sort (to be finished)
+    - Quick Sort (to be finished)
+    - Merge Sort (to be finished)
+    - Heap Sort (to be finished)
+    - Priority Queues (to be finished)
 - Binary trees (to be finished)
 - Graphs (to be finished)
