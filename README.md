@@ -30,5 +30,8 @@ I implemented the following data structure (with ADT) and also finished some pra
     - Array-based queue
     - Linked-based queue
     - Application: simulation (to be finished, it's a little bit complicated...)
+- Hashing
+    - Open dressing
+    - Chaining (to be finished)
 - Binary trees (to be finished)
 - Graphs (to be finished)
