@@ -47,6 +47,7 @@ class ArrayBag:public BagInterface<ItemType>{
         bool contains(const ItemType& anEntry) const;
         void selectionSort();
         void insertionSort();
+        void shellSort();
 };
 
 
@@ -56,16 +57,19 @@ class ArrayBag:public BagInterface<ItemType>{
 
 int main(){
     ArrayBag<int> arrayList; 
-    cout << arrayList.getCurrentSize() << endl;
-    arrayList.add(10);
-    arrayList.add(35);
-    arrayList.add(1);
-    arrayList.add(134);
-    arrayList.add(79);
-    arrayList.add(123);
+    //cout << arrayList.getCurrentSize() << endl;
+    arrayList.add(90);
+    arrayList.add(80);
+    arrayList.add(70);
+    arrayList.add(60);
+    arrayList.add(50);
+    arrayList.add(40);
+    arrayList.add(30);
+    arrayList.add(100);
     arrayList.print();
-    arrayList.insertionSort();
+    //arrayList.insertionSort();
     //arrayList.selectionSort();
+    arrayList.shellSort();
     arrayList.print();
 }
 
@@ -214,5 +218,29 @@ void ArrayBag<ItemType>::insertionSort(){
             }
             items[location] = temp;
         }
+    }
+}
+
+template<typename ItemType>
+void ArrayBag<ItemType>::shellSort(){
+    int gap = 1;
+    //create the largest element in the increment sequences
+    while (3 * gap + 1 < itemCount - 1){
+        gap = 3 * gap + 1;
+    }
+    while (gap > 0){
+        cout << gap << endl;
+        cout << "======================" << endl;
+        //interval insertion sort
+        for (int i = gap; i <= itemCount - 1; i++){
+            int temp = items[i];
+            int j = i;
+            while (j >= gap && items[j - gap] > temp){
+                items[j] = items[j - gap];
+                j -= gap;
+            }
+            items[j] = temp;
+        }
+        gap = gap / 3;
     }
 }

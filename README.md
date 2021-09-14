@@ -36,7 +36,7 @@ I implemented the following data structure (with ADT) and also finished some pra
 - Sorting Algorithm
     - Selection Sort: Array-based
     - Insertion Sort: Array-based, Linked list-based
-    - Shell Sort (to be finished)
+    - Shell Sort: Array-based
     - Quick Sort (to be finished)
     - Merge Sort (to be finished)
     - Heap Sort (to be finished)
