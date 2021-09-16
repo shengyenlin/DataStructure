@@ -40,6 +40,6 @@ I implemented the following data structure (with ADT) and also finished some pra
     - Quick Sort: Array-based
     - Merge Sort: Linked list-based
     - Heap Sort: Array-based
-    - Priority Queues (to be finished)
+    - Min-priority queue
 - Binary trees (to be finished)
 - Graphs (to be finished)
