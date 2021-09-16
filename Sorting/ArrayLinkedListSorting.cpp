@@ -36,7 +36,7 @@ class ArrayBag:public BagInterface<ItemType>{
         int partition(int first, int last);
         //Recursion version of quick sort
         void recQuickSort(int first, int last);
-        void heapify(int low, int high);
+        void heapifyDown(int low, int high);
         void buildHeap();
     public:
         ArrayBag();
@@ -289,7 +289,7 @@ void ArrayBag<ItemType>::quickSort(){
 }
 
 template<typename ItemType>
-void ArrayBag<ItemType>::heapify(int low, int high){
+void ArrayBag<ItemType>::heapifyDown(int low, int high){
     int largeIndex;
     //copy the root node of the subtree
     ItemType temp = items[low];
@@ -323,7 +323,7 @@ template<typename ItemType>
 void ArrayBag<ItemType>::buildHeap(){
     //restore heap from the last non-leaf node
     for (int index = itemCount / 2 - 1; index >= 0;index--){
-        heapify(index, itemCount - 1);
+        heapifyDown(index, itemCount - 1);
     }
 }
 
@@ -335,6 +335,6 @@ void ArrayBag<ItemType>::heapSort(){
         temp = items[i];
         items[i] = items[0];
         items[0] = temp;
-        heapify(0, i - 1);
+        heapifyDown(0, i - 1);
     }
 }
