@@ -298,7 +298,7 @@ void ArrayBag<ItemType>::heapifyDown(int low, int high){
     //There's still child under "low" node (i.e., the largeIndex is smaller than the length of the list)
     while (largeIndex <= high){
         //Make sure there's a right child
-        if (largeIndex <= high){
+        if (largeIndex < high){
             //find the largest child
             if (items[largeIndex] < items[largeIndex + 1]){
                 largeIndex = largeIndex + 1;
