@@ -29,8 +29,15 @@ class ArrayBag:public BagInterface<ItemType>{
         int getIndexOf(const ItemType& target) const;
         //Get the location of minimum element in the array[first:last]
         int getMinLocation(int first, int last);
-        //Swap the element int array[first] and array[second]
+        //Swap the element in array[first] and array[second]
         void swap(int first, int second);
+        //Function to partition the array by first and last index
+        //Post-condition: Returns the pivot element index in the list (the middle index in the list)
+        int partition(int first, int last);
+        //Recursion version of quick sort
+        void recQuickSort(int first, int last);
+        void heapify(int low, int high);
+        void buildHeap();
     public:
         ArrayBag();
         ~ArrayBag();
@@ -48,6 +55,8 @@ class ArrayBag:public BagInterface<ItemType>{
         void selectionSort();
         void insertionSort();
         void shellSort();
+        void quickSort();
+        void heapSort();
 };
 
 
@@ -69,7 +78,9 @@ int main(){
     arrayList.print();
     //arrayList.insertionSort();
     //arrayList.selectionSort();
-    arrayList.shellSort();
+    //arrayList.shellSort();
+    //arrayList.quickSort();
+    arrayList.heapSort();
     arrayList.print();
 }
 
@@ -242,5 +253,88 @@ void ArrayBag<ItemType>::shellSort(){
             items[j] = temp;
         }
         gap = gap / 3;
+    }
+}
+
+template<typename ItemType>
+int ArrayBag<ItemType>::partition(int first, int last){
+    ItemType pivot = items[(first + last) / 2];
+    //small Index: The index that traces the last element in the lowerSubList(contains elements less than pivot)
+    int smallIndex = first;
+    //Let the first element to be pivot
+    swap(first, (first + last) / 2);
+    for (int index = first + 1; index <= last; index++){
+        if (items[index] < pivot){
+            smallIndex++;
+            swap(smallIndex, index);
+        }
+    }
+    swap(first, smallIndex);
+    return smallIndex;
+}
+
+template<typename ItemType>
+void ArrayBag<ItemType>::recQuickSort(int first, int last){
+    int pivotLocation;
+    if (first < last){
+        pivotLocation = partition(first, last);
+        recQuickSort(first, pivotLocation - 1);
+        recQuickSort(pivotLocation + 1, last);
+    }
+}
+
+template<typename ItemType>
+void ArrayBag<ItemType>::quickSort(){
+    recQuickSort(0, itemCount - 1);
+}
+
+template<typename ItemType>
+void ArrayBag<ItemType>::heapify(int low, int high){
+    int largeIndex;
+    //copy the root node of the subtree
+    ItemType temp = items[low];
+    //index of the left child
+    largeIndex = 2 * low  + 1;
+    //There's still child under "low" node (i.e., the largeIndex is smaller than the length of the list)
+    while (largeIndex <= high){
+        //Make sure there's a right child
+        if (largeIndex <= high){
+            //find the largest child
+            if (items[largeIndex] < items[largeIndex + 1]){
+                largeIndex = largeIndex + 1;
+            }
+        }
+        //subtree is already in a heap
+        if (temp > items[largeIndex]){
+            break;
+        }
+        else{
+            //move the larger child to the root
+            items[low] = items[largeIndex];
+            //move on to the next subtree
+            low = largeIndex; //low: next root node
+            largeIndex = 2 * low + 1; //largeIndex: left child of the "low"
+        }
+    }
+    items[low] = temp;
+}
+
+template<typename ItemType>
+void ArrayBag<ItemType>::buildHeap(){
+    //restore heap from the last non-leaf node
+    for (int index = itemCount / 2 - 1; index >= 0;index--){
+        heapify(index, itemCount - 1);
+    }
+}
+
+template<typename ItemType>
+void ArrayBag<ItemType>::heapSort(){
+    ItemType temp;
+    buildHeap();
+    for (int i = itemCount - 1; i >= 1; i--){
+        temp = items[i];
+        items[i] = items[0];
+        items[0] = temp;
+        heapify(0, i - 1);
     }
 }

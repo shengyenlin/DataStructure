@@ -36,6 +36,9 @@ class LinkedBag:public BagInterface<ItemType>{
         Node<ItemType>* headPtr;
         int itemCount;
         Node<ItemType>* getPointerTo(const ItemType& anEntry) const;
+        void divideList(Node<ItemType>* first1, Node<ItemType>* &first2);
+        Node<ItemType>* mergeList(Node<ItemType>* first1, Node<ItemType>* first2);
+        void recMergeSort(Node<ItemType>* &head);
     public:
         LinkedBag();
         LinkedBag(const LinkedBag<ItemType>& aBag);
@@ -52,6 +55,7 @@ class LinkedBag:public BagInterface<ItemType>{
         void print() const;
         vector<ItemType> toVector();
         void insertionSort();
+        void mergeSort();
 };
 
 const int ARRAY_LEN = 10;
@@ -67,7 +71,8 @@ int main(){
         LL.add(arr[i]);
     }
     LL.print();
-    LL.insertionSort();
+    //LL.insertionSort();
+    LL.mergeSort();
     LL.print();
 }
 
@@ -295,4 +300,112 @@ void LinkedBag<ItemType>::insertionSort(){
             }
         }
     }
+}
+
+template<typename ItemType>
+void LinkedBag<ItemType>::divideList(Node<ItemType>* first1, Node<ItemType>* &first2){
+    Node<ItemType>* middle;
+    //curren should be two nodes away from middle when initialized
+    Node<ItemType>* current;
+    //case1: The list is empty
+    if (first1 == nullptr){
+        first1 = nullptr;
+    }
+    //case2: The list has only one element
+    else if (first1->getNext() == nullptr){
+        first2 = nullptr;
+    }
+    else{
+        middle = first1;
+        current = first1->getNext();
+        //case3a: The list has more than two nodes
+        if (current != nullptr){
+            current = current->getNext();
+        }
+        while (current != nullptr){
+            middle = middle->getNext();
+            current = current->getNext();
+            if (current != nullptr){
+                current = current->getNext();
+            }
+        }
+        //first2 points to the first node of the second sublist
+        first2 = middle->getNext();
+        //set the link of the last node of the first sublist to null
+        middle->setNext(nullptr);
+    }
+}
+
+template <typename ItemType>
+Node<ItemType>* LinkedBag<ItemType>::mergeList(Node<ItemType>* first1, Node<ItemType>* first2){
+    //pointer to the last node of the merged list
+    Node<ItemType>* lastMerged;
+    //pointer to the merged list
+    Node<ItemType>* newHead;
+    //case1: the first sublist is empty
+    if (first1 == nullptr){
+        return first2;
+    }
+    //case2: the second sublist is empty
+    else if (first2 == nullptr){
+        return first1;
+    }
+    else{
+        //compare the first node
+        //initialize the merged list
+        if (first1->getItem() < first2->getItem()){
+            newHead = first1;
+            first1 = first1->getNext();
+            lastMerged = newHead;
+        }
+        else{
+            newHead = first2;
+            first2 = first2->getNext();
+            lastMerged = newHead;
+        }
+        //traverse two list until one is empty
+        while(first1 != nullptr && first2 != nullptr){
+            //compare element of the two list
+            if (first1->getItem() < first2->getItem()){
+                lastMerged->setNext(first1);
+                lastMerged = first1;
+                first1 = first1->getNext();
+            }
+            else{
+                lastMerged->setNext(first2);
+                lastMerged = first2;
+                first2 = first2->getNext();               
+            }
+        }
+        //first list is exhausted
+        if (first1 == nullptr){
+            lastMerged->setNext(first2);
+        }
+        else{
+            lastMerged->setNext(first1);
+        }
+    }
+    return newHead;
+}
+
+template<typename ItemType>
+void LinkedBag<ItemType>::recMergeSort(Node<ItemType>* &head){
+    Node<ItemType>* otherHead;
+    //If the list is not empty
+    if (head != nullptr){
+        //If the list has more than one node
+        if (head->getNext() != nullptr){
+            divideList(head, otherHead);
+            //cout << head->getItem() << " " << otherHead->getItem() << endl;
+            recMergeSort(head);
+            recMergeSort(otherHead);
+            head = mergeList(head, otherHead);
+            //cout << head->getItem() << " " << otherHead->getItem() << endl;
+        }
+    }
+}
+
+template<typename ItemType>
+void LinkedBag<ItemType>::mergeSort(){
+    recMergeSort(headPtr);
 }
