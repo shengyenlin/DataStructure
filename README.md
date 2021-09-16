@@ -37,9 +37,9 @@ I implemented the following data structure (with ADT) and also finished some pra
     - Selection Sort: Array-based
     - Insertion Sort: Array-based, Linked list-based
     - Shell Sort: Array-based
-    - Quick Sort (to be finished)
-    - Merge Sort (to be finished)
-    - Heap Sort (to be finished)
+    - Quick Sort: Array-based
+    - Merge Sort: Linked list-based
+    - Heap Sort: Array-based
     - Priority Queues (to be finished)
 - Binary trees (to be finished)
 - Graphs (to be finished)
