@@ -41,5 +41,8 @@ I implemented the following data structure (with ADT) and also finished some pra
     - Merge Sort: Linked list-based
     - Heap Sort: Array-based
     - Min-priority queue
-- Binary trees (to be finished)
+- Binary trees
+    - Binary Search Tree
+    - AVL Tree (to be finished)
+    - B-Tree (to be finished)
 - Graphs (to be finished)

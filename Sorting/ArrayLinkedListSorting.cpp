@@ -322,7 +322,7 @@ void ArrayBag<ItemType>::heapifyDown(int low, int high){
 template<typename ItemType>
 void ArrayBag<ItemType>::buildHeap(){
     //restore heap from the last non-leaf node
-    for (int index = itemCount / 2 - 1; index >= 0;index--){
+    for (int index = itemCount / 2 - 1; index >= 0; index--){
         heapifyDown(index, itemCount - 1);
     }
 }
